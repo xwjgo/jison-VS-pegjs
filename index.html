@@ -21,5 +21,21 @@
     </div>
 <script type="text/javascript" src="./parser/JisonCalc.js"></script>
 <script type="text/javascript" src="./parser/PegCalc.js"></script>
+<script type="text/javascript">
+var testExpr = "-1.25 + 23.56*10*(10 + 4/(2-1.5)) + 9/3.2*8", // 4262.5
+    testTimes = 100000;
+// jison
+console.time();
+for(var i = 0; i < testTimes; i ++) {
+    JisonCalc.parse(testExpr);
+};
+console.timeEnd(); // 2456.34814453125ms
+// PEG.js
+console.time();
+for(var i = 0; i < testTimes; i ++) {
+    PegCalc.parse(testExpr);
+};
+console.timeEnd(); // 1191.030029296875ms
+</script>
 </body>
 </html>
